@@ -96,10 +96,12 @@ class RoomManager {
     return room;
   }
 
-  setProgress(roomId:string,userId:string,progress:number){
+  setProgress(userId:string){
+    const roomId = this.users.get(userId);
+    if(!roomId) return ;
     const room = this.rooms.get(roomId);
     if(!room) return ;
-    room.progress[userId] = {p:progress,t:Date.now()};
+    room.progress[userId] = {p:room.progress[userId].p+1,t:Date.now()};
     return room;
   }
 

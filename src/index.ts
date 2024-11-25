@@ -82,9 +82,9 @@ io.on("connection", (socket : Socket) => {
   });
 
   // Set Progress
-  socket.on("game:progress", (roomId:string,progress:number) => {
-    const room = roomManager.setProgress(roomId,socket.id,progress);
-    if(room) socket.to(roomId).emit("game:progress",room.progress);
+  socket.on("game:progress", (roomId:string) => {
+    const room = roomManager.setProgress(socket.id);
+    if(room) io.in(roomId).emit("game:progress",room.progress);
   })
 
   // Leave Room
