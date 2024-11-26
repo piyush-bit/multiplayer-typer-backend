@@ -58,6 +58,8 @@ class RoomManager {
 
   startGame(roomId:string, userId:string , socket : Socket) : Room | undefined {
     const room = this.rooms.get(roomId);
+    // reset Progress 
+    this.resetRoomProgress(roomId);
     if (!room || room.creator !== userId) return ;
     room.gameState.isStarted = true;
     room.gameState.text=faker.lorem.sentence();
@@ -103,6 +105,16 @@ class RoomManager {
     if(!room) return ;
     room.progress[userId] = {p:room.progress[userId].p+1,t:Date.now()};
     return room;
+  }
+
+  resetRoomProgress(roomId:string){
+    const room = this.rooms.get(roomId);
+    if (!room) return;
+    for (const userId in room.progress) {
+      room.progress[userId].p = 0;
+    }
+    return room;
+
   }
 
   getRooms(){
