@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import {faker} from "@faker-js/faker"
+import { article} from "txtgen"
 
 interface Progress {
   p: number; // progress count
@@ -62,7 +62,7 @@ class RoomManager {
     this.resetRoomProgress(roomId);
     if (!room || room.creator !== userId) return ;
     room.gameState.isStarted = true;
-    room.gameState.text=faker.lorem.sentence();
+    room.gameState.text=article();
     
     // send text to all users
     socket.to(roomId).emit("game:text", room.gameState.text);

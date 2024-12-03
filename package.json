@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@faker-js/faker": "^9.2.0",
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "txtgen": "^3.0.7"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
